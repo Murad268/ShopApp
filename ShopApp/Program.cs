@@ -19,7 +19,7 @@ namespace ShopApp
             List<Product> products = ProductDb.All();
         Start:
           
-            Console.WriteLine("Select 1 for Show all products, 2 Show products by category, 3 Show total company price, 4 for Show total price for category 5 for Add product, 6 for Sell product\r\n ");
+            Console.WriteLine("Select 1 for Show all products, 2 Show products by category, 3 Show total company price, 4 for Show total price for category 5 for Add product, 6 for Sell product, 7 for delete product\r\n ");
             var seletectedVariant = Console.ReadLine();
             if (seletectedVariant == "1")
             {
@@ -54,7 +54,16 @@ namespace ShopApp
                 var selectedId = Console.ReadLine();   
                 productController.sellProduct(ref products, selectedId);
                 goto Start;
-            } else
+            }
+            else if (seletectedVariant == "7")
+            {
+                productController.getAllProducts(products);
+                Console.WriteLine("Select product id for delete");
+                var selectedId = Console.ReadLine();
+                productController.removeProduct(ref products, selectedId);
+                goto Start;
+            }
+            else
             {
                 Console.WriteLine("Invalid select");
                 goto Start;
